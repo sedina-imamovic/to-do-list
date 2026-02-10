@@ -2,49 +2,41 @@ package se.jimmy.iths.todolist.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GroceryListService {
 
     private final GroceryListRepository groceryListRepository;
-    private final GroceryListValidator groceryListValidator;
+    //private final GroceryListValidator groceryListValidator;
 
-    public GroceryListService(GroceryListRepository groceryListRepository, GroceryListValidator groceryListValidator) {
+    public GroceryListService(GroceryListRepository groceryListRepository) {
         this.groceryListRepository = groceryListRepository;
-        this.groceryListValidator = groceryListValidator;
+
     }
 
-
-    public List<GroceryList> findAll() {
+    public List<GroceryList> getAllGroceries() {
         return groceryListRepository.findAll();
     }
 
-    public GroceryList findById(Long id) {
+    public GroceryList createGrocery(GroceryList groceryList) {
+        return groceryListRepository.save(groceryList);
+    }
+
+    public GroceryList getGrocery(Long id) {
         return groceryListRepository.findById(id)
-                .orElseThrow(() -> new GroceryListNotFoundException(id));
+                .orElseThrow(() -> new GroceryListNotFoundException("Grocery list not found with id: " + id));
     }
 
-    public GroceryList createGroceryList(GroceryList groceryList) {
-        validator.validate(groceryList);
-        return repository.save(groceryList);
+
+    public GroceryList updateGrocery(Long id, GroceryList groceryList) {
+        groceryList.setId(id);
+        return groceryListRepository.save(groceryList);
     }
 
-    public GroceryList updateGroceryList(Long id, GroceryList updated) {
-        GroceryList existing = findById(id);
+    public void deleteGrocery(Long id) {
+        groceryListRepository.deleteById(id);
 
-        validator.validate(updated);
-
-        existing.setName(updated.getName());
-        existing.setQuantity(updated.getQuantity());
-        existing.setCategory(updated.getCategory());
-        existing.setPurchased(updated.isPurchased());
-
-        return groceryListRepository.save(existing);
-    }
-
-    public void deleteItem(Long id) {
-        //groceryListRepository.deleteById(id);
-        GroceryList existing = findById(id);
-        groceryListRepository.delete(existing);
     }
 
 }
