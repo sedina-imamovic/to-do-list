@@ -11,21 +11,21 @@ public class GroceryListService {
         this.groceryListRepository = groceryListRepository;
     }
 
-    public GroceryList save(GroceryList item) {
-        return groceryListRepository.save(item);
+    public GroceryList save(GroceryList groceryList) {
+        return groceryListRepository.save(groceryList);
     }
 
-    public List<GroceryList> getAllGrocery() {
-        return groceryListRepository.getAllGrocery();
+    public List<GroceryList> findAll() {
+        return groceryListRepository.findAll();
     }
 
     public GroceryList findById(Long id) {
         return groceryListRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Grocery list not found"));
     }
 
-    public void deleteItem(Long id) {
-        groceryListRepository.deleteItem(id);
+    public void delete(Long id) {
+        groceryListRepository.delete(id);
     }
 
 }
