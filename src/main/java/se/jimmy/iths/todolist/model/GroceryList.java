@@ -18,11 +18,6 @@ public class GroceryList {
     public GroceryList() {
     }
 
-    public GroceryList(String name, int quantity, boolean purchased) {
-        this.name = name;
-        this.quantity = quantity;
-        this.purchased = purchased;
-    }
 
     public Long getId() {
         return id;
