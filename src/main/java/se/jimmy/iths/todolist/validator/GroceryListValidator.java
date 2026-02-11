@@ -6,7 +6,7 @@ import se.jimmy.iths.todolist.exceptions.GroceryListValidationException;
 @Component
 public class GroceryListValidator {
     public void validateName(String name) {
-        if (name == null || name.length() == 0) {
+        if (name == null || name.isBlank()) {
             throw new GroceryListValidationException("Grocery list name cannot be empty");
         }
     }
