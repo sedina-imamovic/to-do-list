@@ -2,6 +2,7 @@ package se.jimmy.iths.todolist.validator;
 
 import org.springframework.stereotype.Component;
 import se.jimmy.iths.todolist.exceptions.GroceryListValidationException;
+import se.jimmy.iths.todolist.model.GroceryList;
 
 @Component
 public class GroceryListValidator {
