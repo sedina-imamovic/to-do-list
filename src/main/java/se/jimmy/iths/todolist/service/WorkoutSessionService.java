@@ -42,7 +42,7 @@ public class WorkoutSessionService {
         return workoutSessionRepository.save(sessionToUpdate);
     }
 
-    public void delete(WorkoutSession workoutSession, Long id) {
+    public void delete(Long id) {
         getById(id);
         workoutSessionRepository.deleteById(id);
     }
