@@ -17,7 +17,7 @@ public class GroceryListValidator {
         }
     }
 
-    
+
     public void validateCategory(String category) {
         if (category == null || category.length() == 0) {
             throw new GroceryListValidationException("Category cannot be empty");
@@ -28,10 +28,11 @@ public class GroceryListValidator {
 
     }
 
-    // ska detta med eller inte?
-//    public void validate(GroceryList groceryList) {
-//        validateName(groceryList.getName());
-//        validateQuantity(groceryList.getQuantity());
-//        validateCategory(groceryList.getCategory());
-//    }
+
+    public void validate(GroceryList groceryList) {
+        validateName(groceryList.getName());
+        validateQuantity(groceryList.getQuantity());
+        validateCategory(groceryList.getCategory());
+        validatePurchase(groceryList.isPurchased());
+    }
 }
