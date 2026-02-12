@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add groceries</title>
+</head>
+<body>
+
+<h1>New grocery</h1>
+
+<form method="post" th:action="@{/groceries}">
+    <p>
+        <label>Name:</label>
+        <input type="text" name="name">
+    </p>
+
+    <p>
+        <label>Quantity:</label>
+        <input type="number" name="quantity">
+    </p>
+
+    <p>
+        <label>Category:</label>
+        <input type="text" name="category">
+    </p>
+
+    <input type="hidden" name="purchased" value="false">
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
