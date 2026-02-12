@@ -39,12 +39,13 @@ public class GroceryListService {
     public GroceryList updateGrocery(Long id, GroceryList groceryListupdate) {
         GroceryList existing = getGrocery(id);
 
-        groceryListValidator.validate(groceryListupdate);
 
         existing.setName(groceryListupdate.getName());
         existing.setQuantity(groceryListupdate.getQuantity());
         existing.setCategory(groceryListupdate.getCategory());
         existing.setPurchased(groceryListupdate.isPurchased());
+
+        groceryListValidator.validate(groceryListupdate);
 
         return groceryListRepository.save(existing);
     }
