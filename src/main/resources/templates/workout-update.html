@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Update Workout</h1>
-    <form th:action="@{/workout/update/{id}(id=${workoutSession.id})}" th:object="${workoutSession}" th:method="put">
+    <form th:action="@{/workout/{id}(id=${workoutSession.id})}" th:object="${workoutSession}" th:method="put">
         <div>
             <label for="date">Date:</label>
             <input type="date" id="date" th:field="*{date}" required />

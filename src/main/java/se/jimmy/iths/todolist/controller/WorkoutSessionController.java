@@ -22,7 +22,7 @@ public class WorkoutSessionController {
         return "workout-list";
     }
 
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}")
     public String showWorkoutDetail(@PathVariable Long id, Model model) {
         model.addAttribute("workoutSession", workoutSessionService.getById(id));
         return "workout-detail";
@@ -34,25 +34,25 @@ public class WorkoutSessionController {
         return "workout-create";
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public String createWorkout(@ModelAttribute WorkoutSession workoutSession) {
         workoutSessionService.create(workoutSession);
         return "redirect:/workout";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/{id}/edit")
     public String showUpdateForm(Model model, @PathVariable Long id) {
         model.addAttribute("workoutSession", workoutSessionService.getById(id));
         return "workout-update";
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public String updateWorkoutById(@PathVariable Long id, @ModelAttribute WorkoutSession workoutSession) {
         workoutSessionService.update(workoutSession, id);
         return "redirect:/workout";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteWorkout(@PathVariable Long id) {
         workoutSessionService.delete(id);
         return "redirect:/workout";

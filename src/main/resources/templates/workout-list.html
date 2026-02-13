@@ -24,9 +24,9 @@
                 <td th:text="${workout.durationInMinutes}"></td>
                 <td th:text="${workout.intensity}"></td>
                 <td>
-                    <a th:href="@{/workout/details/{id}(id=${workout.id})}">Details</a>
-                    <a th:href="@{/workout/update/{id}(id=${workout.id})}">Update</a>
-                    <form th:action="@{/workout/delete/{id}(id=${workout.id})}" th:method="delete" style="display:inline;">
+                    <a th:href="@{/workout/{id}(id=${workout.id})}">Details</a>
+                    <a th:href="@{/workout/{id}/edit(id=${workout.id})}">Update</a>
+                    <form th:action="@{/workout/{id}(id=${workout.id})}" th:method="delete" style="display:inline;">
                         <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </td>

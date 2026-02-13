@@ -13,6 +13,6 @@
     <p><strong>Intensity:</strong> <span th:text="${workoutSession.intensity}"></span></p>
     <br>
     <a th:href="@{/workout}">Back to List</a>
-    <a th:href="@{/workout/update/{id}(id=${workoutSession.id})}">Edit</a>
+    <a th:href="@{/workout/{id}/edit(id=${workoutSession.id})}">Edit</a>
 </body>
 </html>

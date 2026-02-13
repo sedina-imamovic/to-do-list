@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Create New Workout</h1>
-    <form th:action="@{/workout/new}" th:object="${workoutSession}" method="post">
+    <form th:action="@{/workout}" th:object="${workoutSession}" method="post">
         <div>
             <label for="date">Date:</label>
             <input type="date" id="date" th:field="*{date}" required />
