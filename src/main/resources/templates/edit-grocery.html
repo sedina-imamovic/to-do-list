@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update grocery</title>
+</head>
+<body>
+
+<h1>Update grocery</h1>
+
+<form method="post" th:object="${grocery}" th:action="@{/groceries/{id}(id=${grocery.id})}">
+    <input type="hidden" name="_method" value="PUT">
+
+
+    <p>
+        <label>Name:</label>
+        <input type="text" name="name"
+               th:value="${grocery.name}">
+    </p>
+
+    <p>
+        <label>Quantity:</label>
+        <input type="number" name="quantity"
+               th:value="${grocery.quantity}">
+    </p>
+
+    <p>
+        <label>Category:</label>
+        <input type="text" name="category"
+               th:value="${grocery.category}">
+    </p>
+
+    <p>
+        <label>Purchased:</label>
+
+        <input type="checkbox"
+               th:field="*{purchased}">
+    </p>
+
+    <button type="submit">Update</button>
+
+</form>
+
+</body>
+</html>

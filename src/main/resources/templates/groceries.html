@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grocery list</title>
+</head>
+<body>
+
+<h1>Groceries</h1>
+
+<a th:href="@{/groceries/new}">Add grocery</a>
+
+<ul>
+    <li th:each="grocery : ${groceries}">
+        <span th:text="${grocery.name}"></span>
+
+        <a th:href="@{/groceries/{id}(id=${grocery.id})}">Show info</a>
+
+        <a th:href="@{/groceries/{id}/edit(id=${grocery.id})}">Update</a>
+
+        <form th:action="@{/groceries/{id}(id=${grocery.id})}" method="post" style="display: inline">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+
+
+</ul>
+
+</body>
+</html>
