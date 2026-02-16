@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.jimmy.iths.todolist.exceptions.WorkoutSessionNotFoundException;
+import se.jimmy.iths.todolist.exceptions.WorkoutSessionValidationException;
 import se.jimmy.iths.todolist.model.WorkoutSession;
 import se.jimmy.iths.todolist.repository.WorkoutSessionRepository;
 import se.jimmy.iths.todolist.validator.WorkoutSessionValidator;
@@ -98,9 +99,9 @@ class WorkoutSessionServiceTest {
 
     @Test
     void create_ShouldThrowException_WhenValidationFails() {
-        doThrow(new RuntimeException("Validation failed")).when(validator).validate(newSession);
+        doThrow(new WorkoutSessionValidationException("Validation failed")).when(validator).validate(newSession);
 
-        assertThrows(RuntimeException.class, () -> service.create(newSession));
+        assertThrows(WorkoutSessionValidationException.class, () -> service.create(newSession));
 
         verify(repository, never()).save(any());
     }
@@ -126,9 +127,9 @@ class WorkoutSessionServiceTest {
     void update_ShouldThrowException_WhenValidationFails() {
         Long id = 1L;
         when(repository.findById(id)).thenReturn(Optional.of(workoutSessions.getFirst()));
-        doThrow(new RuntimeException("Validation failed")).when(validator).validate(any());
+        doThrow(new WorkoutSessionValidationException("Validation failed")).when(validator).validate(any());
 
-        assertThrows(RuntimeException.class, () -> service.update(newSession, id));
+        assertThrows(WorkoutSessionValidationException.class, () -> service.update(newSession, id));
 
         verify(repository, never()).save(any());
     }
