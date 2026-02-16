@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import se.jimmy.iths.todolist.exceptions.WorkoutSessionNotFoundException;
 import se.jimmy.iths.todolist.model.WorkoutSession;
 import se.jimmy.iths.todolist.repository.WorkoutSessionRepository;
 import se.jimmy.iths.todolist.validator.WorkoutSessionValidator;
@@ -14,11 +15,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class WorkoutSessionServiceTest {
@@ -78,6 +77,14 @@ class WorkoutSessionServiceTest {
     }
 
     @Test
+    void getById_IdNotFound_ShouldReturnWorkoutSessionNotFoundException() {
+        Long id = 99L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(WorkoutSessionNotFoundException.class, () -> service.getById(id));
+    }
+
+    @Test
     void create_ShouldReturnWorkoutSession() {
         when(repository.save(any(WorkoutSession.class))).thenReturn(newSession);
 
@@ -106,6 +113,14 @@ class WorkoutSessionServiceTest {
     }
 
     @Test
+    void update_IdNotFound_ShouldReturnWorkoutSessionNotFoundException() {
+        Long id = 99L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(WorkoutSessionNotFoundException.class, () -> service.update(newSession, id));
+    }
+
+    @Test
     void delete_ShouldDelete_WhenIdExists() {
         Long id = 1L;
         when(repository.findById(id)).thenReturn(Optional.of(workoutSessions.getFirst()));
@@ -113,5 +128,14 @@ class WorkoutSessionServiceTest {
         service.delete(id);
 
         verify(repository).deleteById(id);
+    }
+
+    @Test
+    void delete_IdNotFound_ShouldThrowException() {
+        Long id = 99L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(WorkoutSessionNotFoundException.class, () -> service.delete(id));
+        verify(repository, never()).deleteById(any());
     }
 }
