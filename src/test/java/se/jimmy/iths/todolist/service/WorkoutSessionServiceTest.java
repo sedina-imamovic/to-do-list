@@ -73,7 +73,7 @@ class WorkoutSessionServiceTest {
 
         assertNotNull(result);
         assertEquals("Cycling", result.getExerciseType());
-        assertEquals(4L, result.getId());
+        assertEquals(id, result.getId());
     }
 
     @Test
@@ -97,19 +97,40 @@ class WorkoutSessionServiceTest {
     }
 
     @Test
+    void create_ShouldThrowException_WhenValidationFails() {
+        doThrow(new RuntimeException("Validation failed")).when(validator).validate(newSession);
+
+        assertThrows(RuntimeException.class, () -> service.create(newSession));
+
+        verify(repository, never()).save(any());
+    }
+
+    @Test
     void update_ShouldUpdateAndSaveSession() {
+        Long id = 1L;
         WorkoutSession existingSession = workoutSessions.getFirst();
 
-        when(repository.findById(1L)).thenReturn(Optional.of(existingSession));
+        when(repository.findById(id)).thenReturn(Optional.of(existingSession));
         when(repository.save(any(WorkoutSession.class))).thenAnswer(i -> i.getArguments()[0]);
 
-        WorkoutSession result = service.update(newSession, 1L);
+        WorkoutSession result = service.update(newSession, id);
 
         assertEquals("Cycling", result.getExerciseType());
-        assertEquals(1L, result.getId());
+        assertEquals(id, result.getId());
 
         verify(validator).validate(existingSession);
         verify(repository).save(existingSession);
+    }
+
+    @Test
+    void update_ShouldThrowException_WhenValidationFails() {
+        Long id = 1L;
+        when(repository.findById(id)).thenReturn(Optional.of(workoutSessions.getFirst()));
+        doThrow(new RuntimeException("Validation failed")).when(validator).validate(any());
+
+        assertThrows(RuntimeException.class, () -> service.update(newSession, id));
+
+        verify(repository, never()).save(any());
     }
 
     @Test
