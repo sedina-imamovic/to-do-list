@@ -40,7 +40,7 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void testGetAllGroceryLists() {
+    public void getAllGroceryLists_WhenGroceriesExists_ReturnsGroceryList() {
         when(repository.findAll()).thenReturn(List.of(grocery));
         List<GroceryList> result = service.getAllGroceries();
 
@@ -50,7 +50,7 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void testCreateGrocery() {
+    public void createGrocery_WhenValid_SavesAndReturnsGrocery() {
         when(repository.save(grocery)).thenReturn(grocery);
 
         GroceryList result = service.createGrocery(grocery);
@@ -60,8 +60,8 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void createGroceryThrowsExceptionWhenValidationFails() {
-        doThrow(new GroceryListValidationException("Invalid"))
+    public void createGrocery_ThrowsException_WhenValidationFails() {
+        doThrow(new GroceryListValidationException("Invalid grocery"))
                 .when(validator).validate(grocery);
         assertThrows(GroceryListValidationException.class, () -> service.createGrocery(grocery));
 
@@ -70,7 +70,7 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void getGroceryShouldReturnGroceryWhenFound() {
+    public void getGrocery_WhenFound_ReturnsGrocery() {
         when(repository.findById(1L)).thenReturn(Optional.of(grocery));
 
         GroceryList result = service.getGrocery(1L);
@@ -79,14 +79,14 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void getGroceryThrowsExceptionWhenNotFound() {
+    public void getGrocery_WhenNotFound_ThrowsGroceryListNotFoundException() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
         assertThrows(GroceryListNotFoundException.class, () -> service.getGrocery(1L));
 
     }
 
     @Test
-    public void testUpdateGrocery() {
+    public void updateGrocery_ShouldUpdateAndSave_WhenGroceryExists() {
         GroceryList update = new GroceryList("Milk", 3, "Dairy", true);
         when(repository.findById(1L)).thenReturn(Optional.of(grocery));
         when(repository.save(any())).thenReturn(grocery);
@@ -100,7 +100,7 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void updateGroceryThrowsException() {
+    public void updateGrocery_WhenNotFound_ThrowsException() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
         GroceryList update = new GroceryList("Milk", 3, "Dairy", true);
 
@@ -110,14 +110,14 @@ public class GroceryListServiceTest {
     }
 
     @Test
-    public void testDeleteGrocery() {
+    public void deleteGrocery_ShouldDeleteGrocery_WhenGroceryExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(grocery));
         service.deleteGrocery(1L);
         verify(repository).delete(grocery);
     }
 
     @Test
-    public void deleteGroceryThrowsException() {
+    public void deleteGrocery_WhenNotFound_ThrowsGroceryListNotFoundException() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
         assertThrows(GroceryListNotFoundException.class, () -> service.deleteGrocery(1L));
 
