@@ -1,48 +1,55 @@
 # Personal Management To-Do List
 
-This is a collaborative Spring Boot web application developed as part of a course project (Group 4). The application serves as a centralized hub for personal organization, consisting of four independent CRUD modules.
+Detta är en Spring Boot-webbapplikation utvecklad som ett samarbetsprojekt. Applikationen fungerar som en central hubb för personlig organisation och består av flera oberoende CRUD-moduler.
 
-## Team & Responsibilities
-* **Jimmy** - *Exercise Log (Träningsloggen)*
-    * Handles workout activities, duration, and intensity levels.
-* **Sedina** - *Grocery List (Matlistan)*
-    * Manages shopping items, quantities, and purchase status.
-* **Yunus** - *Study Tasks (Studieplanen)*
-    * Tracks academic tasks, course names, and deadlines.
-* **Fredrik** - *Home Chores (Hushållssysslor)*
-    * Categorizes household tasks by room and importance.
+## Live Demo
+Applikationen finns publicerad på:
+[https://intelligent-kerrie-jimmy-grafstrom-f39488fb.koyeb.app/](https://intelligent-kerrie-jimmy-grafstrom-f39488fb.koyeb.app/)
 
-## Application Features
-The application provides a web interface built with **Thymeleaf** where users can:
-- **Create** new items in each respective list.
-- **Read** and view detailed information about specific entries.
-- **Update** existing records (e.g., marking an item as purchased or changing a deadline).
-- **Delete** entries that are no longer needed.
+## Team & Ansvarsområden
+* **Jimmy** - *Träningsloggen (Workout Session)*: Hanterar träningspass, varaktighet och intensitet.
+* **Sedina** - *Matlistan (Grocery List)*: Hanterar inköpsartiklar, kvantitet och status.
+* **Yunus** - *Studieplanen (Study Plan)*: Spårar akademiska uppgifter och deadlines.
 
-## Technical Stack
-* **Java 21** & **Spring Boot 4.x**
-* **Spring Data JPA** (PostgreSQL in production, H2 for testing)
-* **Thymeleaf** (Frontend templates)
-* **Maven** (Build tool)
-* **Docker** & **GitHub Actions** (CI/CD)
+## Funktioner
+Applikationen erbjuder ett webbgränssnitt byggt med **Thymeleaf** där användare kan:
+- **Skapa (Create):** Lägga till nya poster i respektive lista.
+- **Läsa (Read):** Visa detaljerad information och listvyer.
+- **Uppdatera (Update):** Redigera befintliga poster (t.ex. ändra status på ett träningspass eller en vara).
+- **Radera (Delete):** Ta bort poster som inte längre behövs.
 
-## Environment Variables
-To run this application, the following environment variables must be configured:
-* `DB_URL`: PostgreSQL connection string.
-* `DB_USERNAME`: Database username.
-* `DB_PASSWORD`: Database password.
+## Teknisk Stack
+* **Java 21** & **Spring Boot 4.0.2**
+* **Spring Data JPA** (PostgreSQL i produktion, H2 för lokal utveckling/test)
+* **Thymeleaf** (Frontend-mallar)
+* **Maven** (Byggverktyg)
+* **Docker** & **GitHub Actions** (CI/CD för automatisk publicering till Docker Hub)
 
-## Getting Started
-1. Clone the repository.
-2. Configure the environment variables (DB_URL, DB_USERNAME, DB_PASSWORD).
-3. Build and run the application using Maven:
+## Miljövariabler
+För att köra applikationen i produktion (t.ex. på Koyeb) krävs följande miljövariabler:
+* `DB_URL`: Anslutningssträng till PostgreSQL.
+* `DB_USERNAME`: Databasanvändarnamn.
+* `DB_PASSWORD`: Databaslösenord.
+
+## Kom igång lokalt
+1. Klona repot.
+2. Bygg och kör projektet med Maven:
    ```bash
    ./mvnw spring-boot:run
    ```
-4. Access the application at `http://localhost:8080`
+3. Öppna webbläsaren på: `http://localhost:8080`
 
-## Testing
-The project includes automated Unit and Service tests. To run the test suite:
+## Docker & Deployment
+Projektet är konfigurerat för att automatiskt byggas och pushas till Docker Hub via GitHub Actions vid varje push till `main`. Koyeb är sedan konfigurerat för att automatiskt rulla ut den senaste imagen.
+
+För att bygga imagen manuellt:
+```bash
+./mvnw package
+docker build -t to-do-list .
+```
+
+## Testning
+Projektet använder JUnit för tester. Testerna körs automatiskt i GitHub Actions innan Docker-imagen byggs.
 ```bash
 ./mvnw test
 ```
