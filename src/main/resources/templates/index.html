@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Management Hub</title>
+</head>
+<body>
+    <h1>Personal Management Hub</h1>
+    <p>Select a list to manage:</p>
+    <ul>
+        <li><a th:href="@{/workout}">Exercise Log (Workout Sessions)</a></li>
+        <li><a th:href="@{/groceries}">Grocery List</a></li>
+        <li><span>Study Plan (Under construction)</span></li>
+    </ul>
+</body>
+</html>
