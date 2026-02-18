@@ -49,7 +49,7 @@ docker build -t to-do-list .
 ```
 
 ## Testing
-The project uses JUnit for testing. Tests are automatically executed in GitHub Actions before the Docker image is built.
+The project uses JUnit and Mockito for testing. Tests are automatically executed in GitHub Actions before the Docker image is built.
 ```bash
 ./mvnw test
 ```
