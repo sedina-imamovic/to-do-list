@@ -5,38 +5,44 @@ import org.springframework.stereotype.Component;
 import se.jimmy.iths.todolist.exceptions.StudyplanValidationException;
 import se.jimmy.iths.todolist.model.Studyplan;
 
+
+import java.time.LocalDate;
+
 @Component
 public class StudyplanValidator {
 
     public void validate(Studyplan studyplan) {
-        if (studyplan == null) {
-            throw new StudyplanValidationException("studyplan cannot be empty");
+        validateTaskType(studyplan.getTask());
+        validateCourseName(studyplan.getCoursename());
+        validatePriority(studyplan.getPriority());
+        validateStartdate(studyplan.getStartdate());
+        validateDeadline(studyplan.getDeadline());
+
+    }
+    public void validateTaskType(String taskType) {
+        if (taskType == null || taskType.isBlank()) {
+            throw new  StudyplanValidationException("Task type is empty");
         }
-
-        if (studyplan.getTask() == null || studyplan.getTask().trim().isEmpty()) {
-            throw new StudyplanValidationException("please add a task");
+    }
+    public void validateCourseName(String courseName) {
+        if (courseName == null || courseName.isBlank()) {
+            throw new  StudyplanValidationException("Course name is empty");
         }
-        if (studyplan.getCoursename() == null || studyplan.getCoursename().trim().isEmpty()) {
-            throw new StudyplanValidationException("coursename cannot be empty");
+    }
+    public void validatePriority(int priority) {
+        if (priority < 0 || priority > 100) {
+            throw new  StudyplanValidationException("Priority must be between 0 and 100");
         }
-
-        if (studyplan.getPriority()<0 || studyplan.getPriority()>10) {
-            throw new StudyplanValidationException("priority must be between 0 and 10");
+    }
+    public void validateStartdate(LocalDate startdate) {
+        if (startdate == null) {
+            throw new  StudyplanValidationException("Start date should not be empty");
         }
-
-        if(studyplan.getStartdate()== null){
-            throw new StudyplanValidationException("start date cannot be null");
+    }
+    public void validateDeadline(LocalDate deadline) {
+        if (deadline == null) {
+            throw new  StudyplanValidationException("Deadline should not be empty");
         }
-
-        if (studyplan.getDeadline() !=null &&
-                studyplan.getDeadline().isBefore(studyplan.getStartdate())) {
-            throw new StudyplanValidationException("deadline cannot be before start date");
-        }
-
-
-
-
-
     }
 }
 

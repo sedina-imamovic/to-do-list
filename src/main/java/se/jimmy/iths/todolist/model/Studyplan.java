@@ -2,6 +2,8 @@ package se.jimmy.iths.todolist.model;
 
 
 import jakarta.persistence.*;
+
+import java.sql.Date;
 import java.time.LocalDate;
 
 
@@ -68,6 +70,6 @@ public class Studyplan {
     }
     public void setStartdate(LocalDate startdate) {
         this.startdate = startdate;
-        this.deadline = startdate.plusWeeks(2);
     }
+    public void setDeadline(LocalDate deadline) {this.deadline = deadline;}
 }
