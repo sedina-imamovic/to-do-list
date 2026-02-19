@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home chore</title>
+</head>
+<body>
+    <h1>Chore details</h1>
+<p>Chore: <span th:text="${chore.name}"></span></p>
+<p>Room: <span th:text="${chore.room}"></span></p>
+<p>Importance: <span th:text="${chore.important ? 'Important' : 'Not important'}"></span></p>
+<p>Estimated time: <span th:text="${chore.estimatedTime}"></span> minutes</p>
+
+<a th:href="@{/chore-list}">Back to List</a>
+</body>
+</html>
