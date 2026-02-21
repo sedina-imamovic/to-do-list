@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Chores</h1>
-<a th:href="@{/homeChores/new}">Create new Chore</a>
+<a th:href="@{/homeChore/new}">Create new Chore</a>
 
 <table>
     <tr>
@@ -21,14 +21,14 @@
         <td th:text="${chore.importance}"></td>
         <td th:text="${chore.estimatedTime}"></td>
         <td>
-            <a th:href="@{/homeChores/{id}(id=${chore.id})}">
+            <a th:href="@{/homeChore/{id}(id=${chore.id})}">
                 Show details
             </a>
-            <a th:href="@{/homeChores/{id}/edit(id=${chore.id})}">
+            <a th:href="@{/homeChore/{id}/edit(id=${chore.id})}">
                 Edit chore
             </a>
 
-            <form th:action="@{/homeChores/{id}(id=${chore.id})}"
+            <form th:action="@{/homeChore/{id}(id=${chore.id})}"
                   method="post"
                   style="display: inline">
                 <input type="hidden" name="_method" value="DELETE"/>

@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class HomeChores {
+public class HomeChore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,9 +16,9 @@ public class HomeChores {
     private boolean important;
     private int estimatedTime;
 
-    public HomeChores() {}
+    public HomeChore() {}
 
-    public HomeChores(String chore, String room, boolean important, int estimatedTime) {
+    public HomeChore(String chore, String room, boolean important, int estimatedTime) {
         this.chore = chore;
         this.room = room;
         this.important = important;
