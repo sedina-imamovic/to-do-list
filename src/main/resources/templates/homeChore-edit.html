@@ -7,8 +7,8 @@
 <body>
 <h1>Edit a chore</h1>
 
-<form th:action="@{/homeChore/{id}(id=${chore.id})}"
-      th:object="${chore}"
+<form th:action="@{/homeChore/{id}(id=${homeChore.id})}"
+      th:object="${homeChore}"
       method="post">
     <input type="hidden" name="_method" value="put"/>
     <label>Chore</label>

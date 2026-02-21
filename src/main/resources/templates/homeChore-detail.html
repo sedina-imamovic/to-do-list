@@ -6,10 +6,10 @@
 </head>
 <body>
     <h1>Chore details</h1>
-<p>Chore: <span th:text="${chore.name}"></span></p>
-<p>Room: <span th:text="${chore.room}"></span></p>
-<p>Importance: <span th:text="${chore.important ? 'Important' : 'Not important'}"></span></p>
-<p>Estimated time: <span th:text="${chore.estimatedTime}"></span> minutes</p>
+<p>Chore: <span th:text="${homeChore.chore}"></span></p>
+<p>Room: <span th:text="${homeChore.room}"></span></p>
+<p>Importance: <span th:text="${homeChore.important ? 'Important' : 'Not important'}"></span></p>
+<p>Estimated time: <span th:text="${homeChore.estimatedTime}"></span> minutes</p>
 
 <a th:href="@{/homeChore}">Back to list of all chores</a>
 </body>

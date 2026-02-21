@@ -15,10 +15,10 @@
         <th>Importance</th>
         <th>Estimated time</th>
     </tr>
-    <tr th:each="chore : ${chores}">
+    <tr th:each="chore : ${homeChores}">
         <td th:text="${chore.chore}"></td>
         <td th:text="${chore.room}"></td>
-        <td th:text="${chore.importance}"></td>
+        <td th:text="${chore.important}"></td>
         <td th:text="${chore.estimatedTime}"></td>
         <td>
             <a th:href="@{/homeChore/{id}(id=${chore.id})}">

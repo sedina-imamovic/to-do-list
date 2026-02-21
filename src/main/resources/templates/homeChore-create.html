@@ -17,11 +17,12 @@
     <br><br>
 
     <label>Important</label>
-    <input type="checkbox" th:field="*{important}"/>
+    <input type="hidden" th:field="*{important}" value="false"/>
+    <input type="checkbox" th:field="*{important}" value="true"/>
     <br><br>
 
     <label>Estimated time</label>
-    <input type="text" th:field="*{estimatedTime}" required min="1" max="60"/>
+    <input type="number" th:field="*{estimatedTime}" required min="1" max="60"/>
     <br><br>
 
     <button type="submit">Save</button>
