@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Create new chore</h1>
-<form th:action="@{/chores}" th:object="${chore}" method="post">
+<form th:action="@{/homeChores}" th:object="${chore}" method="post">
 
     <label>Chore</label>
     <input type="text" th:field="*{chore}" required/>
@@ -26,7 +26,7 @@
 
     <button type="submit">Save</button>
 </form>
-<a th:href="@{/chores}">Back to list of all chores</a>
+<a th:href="@{/homeChores}">Back to list of all chores</a>
 
 </body>
 </html>
