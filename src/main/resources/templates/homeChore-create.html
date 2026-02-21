@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Create new chore</h1>
-<form th:action="@{/homeChore}" th:object="${HomeChore}" method="post">
+<form th:action="@{/homeChore}" th:object="${homeChore}" method="post">
 
     <label>Chore</label>
     <input type="text" th:field="*{chore}" required/>
