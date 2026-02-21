@@ -12,19 +12,19 @@
       method="post">
     <input type="hidden" name="_method" value="put"/>
     <label>Chore</label>
-    <input type="text" th:field="*{chore}" required/>
+    <input id="chore" type="text" th:field="*{chore}" required/>
     <br><br>
 
     <label>Room</label>
-    <input type="text" th:field="*{room}" required/>
+    <input id="room" type="text" th:field="*{room}" required/>
     <br><br>
 
     <label>Important</label>
-    <input type="checkbox" th:field="*{important}"/>
+    <input id="important" type="checkbox" th:field="*{important}"/>
     <br><br>
 
     <label>Estimated time</label>
-    <input type="text" th:field="*{estimatedTime}" required min="1" max="60"/>
+    <input id="estimatedTime" type="text" th:field="*{estimatedTime}" required min="1" max="60"/>
     <br><br>
 
     <button type="submit">Save</button>
