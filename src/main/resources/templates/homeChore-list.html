@@ -15,7 +15,7 @@
         <th>Importance</th>
         <th>Estimated time</th>
     </tr>
-    <tr th:each="chore : ${homeChore}">
+    <tr th:each="chore : ${homeChores}">
         <td th:text="${chore.chore}"></td>
         <td th:text="${chore.room}"></td>
         <td th:text="${chore.important}"></td>
