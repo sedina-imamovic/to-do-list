@@ -1,0 +1,7 @@
+CREATE TABLE home_chore (
+    id BIGSERIAL PRIMARY KEY,
+    chore VARCHAR(255) NOT NULL,
+    room VARCHAR(255) NOT NULL,
+    important BOOLEAN NOT NULL DEFAULT FALSE,
+    estimated_time INTEGER NOT NULL
+);
