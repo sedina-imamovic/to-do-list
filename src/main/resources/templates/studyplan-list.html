@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Studyplans</title>
+</head>
+<body>
+<h1>Studyplans</h1>
+
+<a th:href="@{/studyplan/new}">Add New Studyplan</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Task</th>
+        <th>Priority</th>
+        <th>Course</th>
+        <th>Start Date</th>
+        <th>Deadline</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sp : ${studyplans}">
+        <td th:text="${sp.task}"></td>
+        <td th:text="${sp.priority}"></td>
+        <td th:text="${sp.coursename}"></td>
+        <td th:text="${sp.startdate}"></td>
+        <td th:text="${sp.deadline}"></td>
+        <td>
+            <a th:href="@{/studyplan/{id}(id=${sp.id})}">Details</a>
+            <a th:href="@{/studyplan/{id}/edit(id=${sp.id})}">Update</a>
+            <form th:action="@{/studyplan/{id}/delete(id=${sp.id})}" method="post"
+                  onsubmit="return confirm('Are you sure you want to delete this Studyplan?');"
+                  style="display:inline;">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/}">Back to Homepage</a>
+</body>
+</html>

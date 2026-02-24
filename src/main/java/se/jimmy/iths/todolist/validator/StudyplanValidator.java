@@ -17,6 +17,7 @@ public class StudyplanValidator {
         validatePriority(studyplan.getPriority());
         validateStartdate(studyplan.getStartdate());
         validateDeadline(studyplan.getDeadline());
+        validateDateOrder(studyplan.getStartdate(), studyplan.getDeadline());
 
     }
     public void validateTaskType(String taskType) {
@@ -44,6 +45,13 @@ public class StudyplanValidator {
             throw new  StudyplanValidationException("Deadline should not be empty");
         }
     }
+
+    public void validateDateOrder(LocalDate startdate, LocalDate deadline) {
+        if (startdate != null && deadline != null && deadline.isBefore(startdate)) {
+            throw new  StudyplanValidationException("Deadline should be after start date");
+        }
+    }
+
 }
 
 

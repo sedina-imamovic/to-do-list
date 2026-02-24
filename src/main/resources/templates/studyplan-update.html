@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Studyplan</title>
+</head>
+<body>
+<h1>Update Studyplan</h1>
+
+<form th:action="@{/studyplan/{id}(id=${studyplan.id})}" th:object="${studyplan}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div>
+        <label for="task">Task:</label>
+        <input type="text" id="task" th:field="*{task}" required />
+    </div>
+    <div>
+        <label for="priority">Priority (0-100):</label>
+        <input type="number" id="priority" th:field="*{priority}" min="0" max="100" required />
+    </div>
+    <div>
+        <label for="coursename">Course Name:</label>
+        <input type="text" id="coursename" th:field="*{coursename}" required />
+    </div>
+    <div>
+        <label for="startdate">Start Date:</label>
+        <input type="date" id="startdate" th:field="*{startdate}" required />
+    </div>
+    <div>
+        <label for="deadline">Deadline:</label>
+        <input type="date" id="deadline" th:field="*{deadline}" required />
+    </div>
+
+    <button type="submit">Update</button>
+</form>
+
+<br>
+<a th:href="@{/studyplan}">Back to List</a>
+</body>
+</html>
