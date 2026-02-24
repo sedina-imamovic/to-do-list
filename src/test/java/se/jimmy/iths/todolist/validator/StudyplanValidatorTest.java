@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StudyplanValidatorTest {
+class StudyplanValidatorTes {
 
     private StudyplanValidator studyplanValidator;
     private Studyplan validStudyplan;
