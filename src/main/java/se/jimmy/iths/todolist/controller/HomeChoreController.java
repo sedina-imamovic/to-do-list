@@ -18,7 +18,7 @@ public class HomeChoreController {
 
     @GetMapping
     public String getAllHomeChores(Model model) {
-        model.addAttribute("homeChores", homeChoreService.getAllChores());
+        model.addAttribute("homeChore", homeChoreService.getAllChores());
         return "homeChore-list";
     }
 
