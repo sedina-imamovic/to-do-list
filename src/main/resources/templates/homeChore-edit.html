@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit chore</title>
+</head>
+<body>
+<h1>Edit a chore</h1>
+
+<form th:action="@{/homeChore/{id}(id=${homeChore.id})}"
+      th:object="${homeChore}"
+      method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <label for="chore">Chore</label>
+    <input id="chore" type="text" th:field="*{chore}" required/>
+    <br><br>
+
+    <label for="room">Room</label>
+    <input id="room" type="text" th:field="*{room}" required/>
+    <br><br>
+
+    <label for="important">Important</label>
+    <input type="hidden" th:field="*{important}" value="false"/>
+    <input id="important" type="checkbox" th:field="*{important}" value="true"/>
+    <br><br>
+
+    <label for="estimatedTime">Estimated time</label>
+    <input id="estimatedTime" type="number" th:field="*{estimatedTime}" required min="1" max="60"/>
+    <br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/homeChore}">Cancel</a>
+</body>
+</html>

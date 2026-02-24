@@ -10,6 +10,7 @@ The application is published at:
 * **Jimmy** - *Exercise Log (Workout Session)*: Handles workout sessions, duration, and intensity.
 * **Sedina** - *Grocery List*: Manages shopping items, quantities, and status.
 * **Yunus** - *Study Plan*: Tracks academic tasks and deadlines.
+* **Fredrik** - *Home Chores*: Handles chores, assigned room, importance and estimated duration.
 
 ## Features
 The application provides a web interface built with **Thymeleaf** where users can:

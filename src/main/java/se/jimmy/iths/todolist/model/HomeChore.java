@@ -6,22 +6,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class HomeChores {
+public class HomeChore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String chore;
     private String room;
-    private boolean isImportant;
+    private boolean important;
     private int estimatedTime;
 
-    public HomeChores() {}
+    public HomeChore() {}
 
-    public HomeChores(String chore, String room, boolean isImportant, int estimatedTime) {
+    public HomeChore(String chore, String room, boolean important, int estimatedTime) {
         this.chore = chore;
         this.room = room;
-        this.isImportant = isImportant;
+        this.important = important;
         this.estimatedTime = estimatedTime;
     }
 
@@ -49,12 +49,12 @@ public class HomeChores {
         this.room = room;
     }
 
-    public boolean isIsImportant() {
-        return isImportant;
+    public boolean isImportant() {
+        return important;
     }
 
-    public void setIsImportant(boolean important) {
-        this.isImportant = important;
+    public void setImportant(boolean important) {
+        this.important = important;
     }
 
     public int getEstimatedTime() {
