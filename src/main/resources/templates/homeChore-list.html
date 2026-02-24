@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of all Home Chores</title>
+</head>
+<body>
+<h1>Chores</h1>
+<a th:href="@{/chores/new}">Create new Chore</a>
+
+<table>
+    <tr>
+        <th>Chore</th>
+        <th>Room</th>
+        <th>Importance</th>
+        <th>Estimated time</th>
+    </tr>
+    <tr th:each="chore : ${chores}">
+        <td th:text="${chore.chore}"></td>
+        <td th:text="${chore.room}"></td>
+        <td th:text="${chore.importance}"></td>
+        <td th:text="${chore.estimatedTime}"></td>
+        <td>
+            <a th:href="@{/chores/{id}(id=${chore.id})}">
+                Show details
+            </a>
+            <a th:href="@{/chores/{id}/edit(id=${chore.id})}">
+                Edit chore
+            </a>
+
+            <form th:action="@{/chores/{id}(id=${chore.id})}"
+                  method="post"
+                  style="display: inline">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type="submit">Delete chore</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}">Back to homepage</a>
+
+</body>
+</html>

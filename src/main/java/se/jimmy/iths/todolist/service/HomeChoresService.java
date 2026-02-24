@@ -45,7 +45,7 @@ public class HomeChoresService {
 
         existing.setChore(choreUpdate.getChore());
         existing.setRoom(choreUpdate.getRoom());
-        existing.setIsImportant(choreUpdate.isIsImportant());
+        existing.setImportant(choreUpdate.isImportant());
         existing.setEstimatedTime(choreUpdate.getEstimatedTime());
         return choresRepository.save(existing);
     }
