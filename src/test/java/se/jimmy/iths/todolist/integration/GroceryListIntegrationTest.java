@@ -72,7 +72,6 @@ public class GroceryListIntegrationTest {
         mockMvc.perform(get("/groceries"))
                 .andExpect(status().isOk());
 
-        // Kontrollera repository
         assertThat(repository.findAll()).hasSize(3);
     }
 
